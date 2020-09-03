@@ -15,7 +15,6 @@ public class Menu {
 
 	public static void main(String[] args) {
 		Menu homeMenu = new Menu();
-		Menu menu = new Menu();
 		homeMenu.startHome();
 	}
 
@@ -24,10 +23,16 @@ public class Menu {
 	private CommentsDao commentsDao = new CommentsDao();
 	private Scanner scanner = new Scanner(System.in);
 	private List<String> optionsHome = Arrays.asList("Log in Here", "Create Profile");
-	private List<String> options = Arrays.asList("View Profile", "View Feed",
-			// IS FEED A TABLE? and how to make it?
-			"Make a Post", "Edit a Post", "Delete a Post", "Leave a Comment", "Edit a Comment", "Delete a Comment",
-			"Type '0' to Exit");
+	private List<String> options = Arrays.asList(
+								"View Profile",
+								"View Feed",
+								"Make a Post", 
+								"Edit a Post", 
+								"Delete a Post", 
+								"Leave a Comment", 
+								"Edit a Comment", 
+								"Delete a Comment",
+								"Type '0' to Exit");
 
 	public void startHome() {
 		String selection = "";
@@ -38,6 +43,8 @@ public class Menu {
 
 			try {
 				if (selection.equals("1")) {
+				createProfile();
+				} else if (selection.equals("2")) {
 					if (logIn()) {
 						String subSelection = "";
 
@@ -70,8 +77,6 @@ public class Menu {
 							scanner.hasNextLine();
 						} while (!selection.equals("0"));
 					}
-				} else if (selection.equals("2")) {
-					createProfile();
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -130,5 +135,4 @@ public class Menu {
 		usersDao.userLogIn(username, password);
 		return true;
 	}
-
 }
