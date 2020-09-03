@@ -12,7 +12,7 @@ import entities.Posts;
 import entities.Users;
 
 public class Menu {
-
+// HEY IT"S YOUR BOI
 	public static void main(String[] args) {
 		Menu homeMenu = new Menu();
 		Menu menu = new Menu();
