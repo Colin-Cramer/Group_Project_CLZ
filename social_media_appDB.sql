@@ -4,6 +4,7 @@ use social_media_app;
 
 drop table if exists comments;
 drop table if exists posts;
+DROP TABLE IF EXISTS feed;
 drop table if exists users;
 
 create table users (
