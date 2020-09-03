@@ -15,7 +15,7 @@ public class PostsDao {
 	public void createUserPost(String postContent) throws SQLException {
 		PreparedStatement ps = connection.prepareStatement(CREATE_POST_QUERY);
 		ps.setString(1, postContent);
-		ps.executeUpdate();
+		ps.executeUpdate();	
 	}
 	
 }

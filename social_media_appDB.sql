@@ -4,7 +4,6 @@ use social_media_app;
 
 drop table if exists comments;
 drop table if exists posts;
-DROP TABLE IF EXISTS feed;
 drop table if exists users;
 
 create table users (
@@ -20,9 +19,9 @@ create table users (
 create table posts (
 	id int(11) not null auto_increment,
     user_id int(11) not null,
-	username varchar(20) not null,
+	username varchar(20),
 	post_content text not null,
-	post_created_on timestamp not null,
+	post_created_on timestamp,
 	primary key (id),	
 	foreign key (user_id) references users (id)
 );
@@ -30,9 +29,9 @@ create table posts (
 create table comments (
 	id int(11) not null auto_increment,
     post_id int(11) not null,
-	username varchar(20) not null,
+	username varchar(20),
 	comment_content text not null,
-	comment_created_on timestamp not null,
+	comment_created_on timestamp,
 	primary key (id),
 	foreign key (post_id) references posts(id)
 );

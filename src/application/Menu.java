@@ -22,7 +22,7 @@ public class Menu {
 	private PostsDao postsDao = new PostsDao();
 	private CommentsDao commentsDao = new CommentsDao();
 	private Scanner scanner = new Scanner(System.in);
-	private List<String> optionsHome = Arrays.asList("Log in Here", "Create Profile");
+	private List<String> optionsHome = Arrays.asList("Create Profile", "Log in Here", "Type '0' to Exit");
 	private List<String> options = Arrays.asList(
 								"View Profile",
 								"View Feed",
@@ -33,6 +33,14 @@ public class Menu {
 								"Edit a Comment", 
 								"Delete a Comment",
 								"Type '0' to Exit");
+	/*
+	 * Get log in to redirect back to home screen if log in fails - UsersDao - lines 45-52
+	 * 
+	 * Look for possible scope issues with methods in the startHome method - line 45-92
+	 * 
+	 * */
+	
+	
 
 	public void startHome() {
 		String selection = "";
@@ -53,21 +61,21 @@ public class Menu {
 							selection = scanner.nextLine();
 
 							try {
-								if (subSelection.equals("2")) {
+								if (subSelection.equals("1")) {
 									viewProfile();
-								} else if (subSelection.equals("3")) {
+								} else if (subSelection.equals("2")) {
 									// viewFeed();
-								} else if (subSelection.equals("4")) {
+								} else if (subSelection.equals("3")) {
 									createPost();
-								} else if (subSelection.equals("5")) {
+								} else if (subSelection.equals("4")) {
 									// editPost();
-								} else if (subSelection.equals("6")) {
+								} else if (subSelection.equals("5")) {
 									// deletePost();
-								} else if (subSelection.equals("7")) {
+								} else if (subSelection.equals("6")) {
 									// makeComment();
-								} else if (subSelection.equals("8")) {
+								} else if (subSelection.equals("7")) {
 									// editComment();
-								} else if (subSelection.equals("9")) {
+								} else if (subSelection.equals("8")) {
 									// deleteComment();
 								}
 							} catch (SQLException e) {

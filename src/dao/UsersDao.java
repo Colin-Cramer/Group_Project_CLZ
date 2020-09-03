@@ -5,16 +5,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import application.Menu;
 import entities.Users;
 
 public class UsersDao {
 	
+	private Menu menu;
 	private Connection connection;
 	private PostsDao postsDao;
 	private CommentsDao commentsDao;
 	private final String CREATE_PROFILE_QUERY = "INSERT INTO users(username, password, email, first_name, last_name) VALUES(?,?,?,?,?)";
 	private final String VIEW_PROFILE_QUERY = "SELECT first_name, last_name, email FROM users WHERE username = ?";
-	private final String USER_LOGIN_QUERY = "SELECT username, password FROM users WHERE username = ? AND password = ?";
+	private final String USER_LOGIN_QUERY = "SELECT * FROM users WHERE username = ? AND password = ?";
 	
 	public UsersDao() {
 		connection = DBConnection.getConnection();
@@ -41,11 +43,14 @@ public class UsersDao {
 	}
 	
 	public boolean userLogIn(String username, String password) throws SQLException {
-		PreparedStatement ps = connection.prepareStatement(USER_LOGIN_QUERY);
-		ps.setString(1, username);
-		ps.setString(2, password);
-		ResultSet rs = ps.executeQuery();
-		rs.next();
+			PreparedStatement ps = connection.prepareStatement(USER_LOGIN_QUERY);
+			ps.setString(1, username);
+			ps.setString(2, password);
+			ResultSet rs = ps.executeQuery();
+			if (!rs.next()) {
+				System.out.println("Back the fuck up, please.");
+				menu.startHome();
+			}
 		return true;
 	}
 	
