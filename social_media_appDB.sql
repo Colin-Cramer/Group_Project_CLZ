@@ -7,31 +7,29 @@ drop table if exists posts;
 drop table if exists users;
 
 create table users (
-	id int(11) not null auto_increment,
 	username varchar(20) not null,
 	password varchar(20) not null,
 	email varchar(30) not null, 
 	first_name varchar(20),
 	last_name varchar(20),
-	primary key (id)
+	primary key (username)
 );
 
 create table posts (
-	id int(11) not null auto_increment,
-    user_id int(11) not null,
-	username varchar(20),
+	post_title varchar(40) not null,
+	username varchar(20) NOT NULL,
 	post_content text not null,
-	post_created_on timestamp,
-	primary key (id),	
-	foreign key (user_id) references users (id)
+	post_created_on timestamp default current_timestamp,
+	primary key (post_title),	
+	foreign key (username) references users (username)
 );
 
 create table comments (
-	id int(11) not null auto_increment,
-    post_id int(11) not null,
-	username varchar(20),
+	comment_title varchar(40) not null,
+	username varchar(20) NOT NULL,
 	comment_content text not null,
 	comment_created_on timestamp,
-	primary key (id),
-	foreign key (post_id) references posts(id)
+	primary key (comment_title),
+	foreign key (username) references posts(username)
 );
+

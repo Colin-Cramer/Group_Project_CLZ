@@ -1,34 +1,21 @@
 package entities;
 
 public class Posts {
-	private int id;
-	private int userId;
+	private String postTitle;
 	private String userName;
 	private String postContent;
 	private String timeStamp;
 	
-	public Posts (int id, int userId, String userName, String postContent, String timeStamp) {
-		this.setId(id);
-		this.setUserId(userId);
+	public Posts (String postTitle, String userName, String postContent, String timeStamp) {
+		this.setPostTitle(postTitle);
 		this.setUserName(userName);
 		this.setPostContent(postContent);
 		this.setTimeStamp(timeStamp);
 	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
+	
+	public Posts (String userName, String postContent) {
+		this.setPostContent(postContent);
+		this.setUserName(userName);
 	}
 
 	public String getUserName() {
@@ -53,5 +40,13 @@ public class Posts {
 
 	public void setTimeStamp(String timeStamp) {
 		this.timeStamp = timeStamp;
+	}
+
+	public String getPostTitle() {
+		return postTitle;
+	}
+
+	public void setPostTitle(String postTitle) {
+		this.postTitle = postTitle;
 	}
 }

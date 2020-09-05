@@ -1,15 +1,13 @@
 package entities;
 
 public class Users {
-	private int id;
 	private String userName;
 	private String passWord;
 	private String email;
 	private String firstName;
 	private String lastName;
 	
-	public Users (int id, String userName, String passWord, String email, String firstName, String lastName) {
-		this.setId(id);
+	public Users (String userName, String passWord, String email, String firstName, String lastName) {
 		this.setUserName(userName);
 		this.setPassWord(passWord);
 		this.setEmail(email);
@@ -21,14 +19,6 @@ public class Users {
 		this.setFirstName(firstName);
 		this.setLastName(lastName);
 		this.setEmail(email);
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getUserName() {
