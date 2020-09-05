@@ -17,6 +17,12 @@ public class Posts {
 		this.setPostContent(postContent);
 		this.setUserName(userName);
 	}
+	
+	public Posts (String postTitle, String userName, String postContent) {
+		this.setPostTitle(postTitle);
+		this.setUserName(userName);
+		this.setPostContent(postContent);
+	}
 
 	public String getUserName() {
 		return userName;

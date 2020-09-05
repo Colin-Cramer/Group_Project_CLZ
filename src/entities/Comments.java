@@ -14,6 +14,11 @@ public class Comments {
 		this.setCommentContent(commentContent);
 		this.setTimeStamp(timeStamp);
 	}
+	
+	public Comments (String commentTitle, String commentContent) {
+		this.setCommentTitle(commentTitle);
+		this.setCommentContent(commentContent);
+	}
 
 	public String getUserName() {
 		return userName;

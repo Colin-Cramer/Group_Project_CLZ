@@ -15,7 +15,8 @@ public class Users {
 		this.setLastName(lastName);
 	}
 	
-	public Users (String firstName, String lastName, String email) {
+	public Users (String username, String firstName, String lastName, String email) {
+		this.setUserName(username);
 		this.setFirstName(firstName);
 		this.setLastName(lastName);
 		this.setEmail(email);

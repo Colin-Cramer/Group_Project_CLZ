@@ -26,10 +26,12 @@ create table posts (
 
 create table comments (
 	comment_title varchar(40) not null,
+	post_title varchar(40) not null,
 	username varchar(20) NOT NULL,
 	comment_content text not null,
 	comment_created_on timestamp,
 	primary key (comment_title),
-	foreign key (username) references posts(username)
+	foreign key (post_title) references posts(post_title),
+	foreign key (username) references users (username)
 );
 

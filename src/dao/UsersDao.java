@@ -11,7 +11,7 @@ public class UsersDao {
 	
 	private Connection connection;
 	private final String CREATE_PROFILE_QUERY = "INSERT INTO users(username, password, email, first_name, last_name) VALUES(?,?,?,?,?)";
-	private final String VIEW_PROFILE_QUERY = "SELECT first_name, last_name, email FROM users WHERE username = ?";
+	private final String VIEW_PROFILE_QUERY = "SELECT username, first_name, last_name, email FROM users WHERE username = ?";
 	private final String USER_LOGIN_QUERY = "SELECT * FROM users WHERE username = ? AND password = ?";
 	private final String DELETE_ACCOUNT_QUERY = "DELETE FROM users WHERE username = ? AND password = ?";
 	
@@ -34,7 +34,7 @@ public class UsersDao {
 		ps.setString(1, username);
 		ResultSet rs = ps.executeQuery();
 		rs.next();
-		return populateUsers(rs.getString(2), rs.getString(3), rs.getString(4));
+		return populateUsers(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
 	}
 	
 	public boolean userLogIn(String username, String password) throws SQLException {
@@ -57,8 +57,8 @@ public class UsersDao {
 		ps.executeUpdate();
 	}
 	
-	private Users populateUsers(String firstName, String lastName, String email) {
-		return new Users(firstName, lastName, email);
+	private Users populateUsers(String username, String firstName, String lastName, String email) {
+		return new Users(username, firstName, lastName, email);
 	}
 
 }

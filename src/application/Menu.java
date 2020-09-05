@@ -1,6 +1,7 @@
 package application;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -8,6 +9,8 @@ import java.util.Scanner;
 import dao.CommentsDao;
 import dao.PostsDao;
 import dao.UsersDao;
+import entities.Comments;
+import entities.Posts;
 import entities.Users;
 
 public class Menu {
@@ -68,7 +71,7 @@ public class Menu {
 				if (subSelection.equals("1")) {
 					viewProfile();
 				} else if (subSelection.equals("2")) {
-					// viewFeed();
+					viewFeed();
 				} else if (subSelection.equals("3")) {
 					createPost();
 				} else if (subSelection.equals("4")) {
@@ -76,7 +79,7 @@ public class Menu {
 				} else if (subSelection.equals("5")) {
 					deletePost();
 				} else if (subSelection.equals("6")) {
-					// makeComment();
+					createComment();
 				} else if (subSelection.equals("7")) {
 					editComment();
 				} else if (subSelection.equals("8")) {
@@ -138,6 +141,17 @@ public class Menu {
 		+ "\n" + "Name: " + users.getFirstName() + " " + users.getLastName() + "\n" + "Email: " + users.getEmail());
 	}
 
+	private void viewFeed() throws SQLException {
+		System.out.println("Whose feed would you like to see?: ");
+		String username = scanner.nextLine();
+		Posts posts = postsDao.viewUserFeed(username);
+		System.out.println("Username: " + posts.getUserName() + "\n" + "Post Title: " + posts.getPostTitle() + "\n" + "Post: " + posts.getPostContent());
+		ArrayList<Comments> comments = postsDao.viewCommentFromPost(posts.getPostTitle());
+		for (Comments comment : comments) {
+			System.out.println("Comment Title: " + comment.getCommentTitle() + "\n" + "Comment: " + comment.getCommentContent());
+		}
+	}
+
 	private void createPost() throws SQLException {
 		System.out.println("Enter your username: ");
 		String username = scanner.nextLine();
@@ -160,6 +174,18 @@ public class Menu {
 		System.out.println("Enter the ID to the post you would like to delete: ");
 		int id = Integer.parseInt(scanner.nextLine());
 		postsDao.deleteUserPost(id);
+	}
+	
+	private void createComment() throws SQLException {
+		System.out.println("Enter your username: ");
+		String username  = scanner.nextLine();
+		System.out.println("Enter the title of the post you want to comment on: ");
+		String postTitle = scanner.nextLine();
+		System.out.println("Enter a title for your comment: ");
+		String commentTitle = scanner.nextLine();
+		System.out.println("Leave a comment!: ");
+		String commentContent = scanner.nextLine();
+		commentsDao.createUserComment(username, postTitle, commentTitle, commentContent);
 	}
 	
 	private void editComment() throws SQLException {
