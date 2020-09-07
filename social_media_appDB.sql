@@ -19,7 +19,6 @@ create table posts (
 	post_title varchar(40) not null,
 	username varchar(20) NOT NULL,
 	post_content text not null,
-	post_created_on timestamp default current_timestamp,
 	primary key (post_title),	
 	foreign key (username) references users (username)
 );
@@ -29,7 +28,6 @@ create table comments (
 	post_title varchar(40) not null,
 	username varchar(20) NOT NULL,
 	comment_content text not null,
-	comment_created_on timestamp,
 	primary key (comment_title),
 	foreign key (post_title) references posts(post_title),
 	foreign key (username) references users (username)

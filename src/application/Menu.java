@@ -84,7 +84,7 @@ public class Menu {
 					editComment();
 				} else if (subSelection.equals("8")) {
 					deleteComment();
-				} else if (subSelection.contentEquals("9")) {
+				} else if (subSelection.equals("9")) {
 					deleteAccount();
 				}
 			} catch (SQLException e) {
@@ -96,7 +96,8 @@ public class Menu {
 	}
 
 	private void printHomeMenu() {
-		System.out.println("Are you an existing user? \nChoose an option from below: \n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		System.out.println("Are you an existing user? \nChoose an option from below:"
+				+ " \n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		for (int i = 0; i < optionsHome.size(); i++) {
 			System.out.println(i + 1 + ") " + optionsHome.get(i));
 		}
@@ -138,17 +139,19 @@ public class Menu {
 		String username = scanner.nextLine();
 		Users users = usersDao.viewProfileByUsername(username);
 		System.out.println("Username: " + users.getUserName() 
-		+ "\n" + "Name: " + users.getFirstName() + " " + users.getLastName() + "\n" + "Email: " + users.getEmail());
+		+ "\n" + "Name: " + users.getFirstName() + " " + users.getLastName() +"\n"+ "Email: " + users.getEmail());
 	}
 
 	private void viewFeed() throws SQLException {
 		System.out.println("Whose feed would you like to see?: ");
 		String username = scanner.nextLine();
 		Posts posts = postsDao.viewUserFeed(username);
-		System.out.println("Username: " + posts.getUserName() + "\n" + "Post Title: " + posts.getPostTitle() + "\n" + "Post: " + posts.getPostContent());
-		ArrayList<Comments> comments = postsDao.viewCommentFromPost(posts.getPostTitle());
+		System.out.println("Username: " + posts.getUserName() +"\n"+ "Post Title: " + posts.getPostTitle() +"\n"+ "Post: " 
+		+ posts.getPostContent() +"\n"+ "~~~~~~~~~~~~~~~~~~~~~~");
+		ArrayList<Comments> comments = commentsDao.viewCommentFromPost(posts.getPostTitle());
 		for (Comments comment : comments) {
-			System.out.println("Comment Title: " + comment.getCommentTitle() + "\n" + "Comment: " + comment.getCommentContent());
+			System.out.println("Post Title: " + comment.getPostTitle() +"\n"+ "Comment Title: " + comment.getCommentTitle() 
+			+"\n"+ "Comment: " + comment.getCommentContent() +"\n"+ "~~~~~~~~~~~~~~~~~~~~~~");
 		}
 	}
 
